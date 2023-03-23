@@ -1,39 +1,62 @@
 #include <stdio.h>
 
 /**
- * fibonacci - Computes the nth Fibonacci number.
- *
- * @n: The index of the Fibonacci number to compute.
- *
- * Return: The nth Fibonacci number.
+ * numLength - returns the lenth of string
+ * @num : operand number
+ * Return: number of digits
  */
 
-unsigned int fibonacci(int n)
+int numLength(int num)
 {
-	if (n <= 1)
-		return n;
+	int length = 0;
 
-	return fibonacci(n - 1) + fibonacci(n - 2);
+	if (!num)
+	{
+		return (1);
+	}
+
+	while (num)
+	{
+		num = num / 10;
+		length += 1;
+	}
+
+	return (length);
 }
-
 /**
- * main - Entry point
- *
- * Description: Computes and prints the first 98 Fibonacci numbers.
- * The numbers are separated by comma, followed by a space, and
- * followed by a new line.
- *
- * Return: Always 0 (Success)
+ *  *main - prints the first 98 fibonaci sequences
+ *  Return: 0
  */
 
 int main(void)
 {
-	int i;
+	unsigned long f1 = 1, f2 = 2, tmp, mx = 100000000, f1o = 0, f2o = 0, tmpo = 0;
+	short int i = 1, initial0s;
 
-	for (i = 0; i < 98; i++)
-		printf("%u, ", fibonacci(i));
+	while (i <= 98)
+	{
+		if (f1o > 0)
+			printf("%lu", f1o);
+		initial0s = numLength(mx) - 1 - numLength(f1);
+		while (f1o > 0 && initial0s > 0)
+		{
+			printf("%i", 0);
+			initial0s--;
+		}
+		printf("%lu", f1);
 
-	printf("%u\n", fibonacci(i));
+		tmp = (f1 + f2) % mx;
+		tmpo = f1o + f2o + (f1 + f2) / mx;
+		f1 = f2;
+		f1o = f2o;
+		f2 = tmp;
+		f2o = tmpo;
 
+		if (i != 98)
+			printf(", ");
+		else
+			printf("\n");
+		i++;
+	}
 	return (0);
 }
