@@ -1,6 +1,22 @@
 #include <stdio.h>
 
 /**
+ * fibonacci - Computes the nth Fibonacci number.
+ *
+ * @n: The index of the Fibonacci number to compute.
+ *
+ * Return: The nth Fibonacci number.
+ */
+
+unsigned int fibonacci(int n)
+{
+	if (n <= 1)
+		return n;
+
+	return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+/**
  * main - Entry point
  *
  * Description: Computes and prints the first 98 Fibonacci numbers.
@@ -13,19 +29,11 @@
 int main(void)
 {
 	int i;
-	unsigned int a = 1, b = 2, c;
 
-	printf("%u, %u", a, b);
+	for (i = 0; i < 98; i++)
+		printf("%u, ", fibonacci(i));
 
-	for (i = 3; i <= 98; i++)
-	{
-		c = a + b;
-		printf(", %u", c);
-		a = b;
-		b = c;
-	}
-
-	printf("\n");
+	printf("%u\n", fibonacci(i));
 
 	return (0);
 }
