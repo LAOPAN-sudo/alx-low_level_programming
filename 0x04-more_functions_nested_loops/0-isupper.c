@@ -2,15 +2,15 @@
 
 /**
  * _isupper - checks is a character is uppercase
- * @letter: carrier character variable
+ * @c: carrier integer variable
  * Return: 1 if true, 0 if false
  */
 
-int _isupper(char letter)
+int _isupper(int c)
 {
-		while (letter >= 'a' && letter <= 'z')
-		{
-			return (1);
-		}
-		return (0);
+	if (c >= 65 && c <= 90)
+	{
+		return (1);
+	}
+	return (0);
 }
