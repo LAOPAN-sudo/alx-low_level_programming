@@ -1,19 +1,22 @@
 #include <stdio.h>
 
 /**
- * main - prints the third element of an array
+ * main - Entry point
  *
- * Return: Always 0.
- */
-
+ * Return: Always 0 (Success)
+ **/
 int main(void)
 {
+	int n;
 	int a[5];
 	int *p;
 
-	p = &a[2];
-	*(p + 1) = 98;
-	printf("a[2] = %d\n", *(p)); /* Prints the third element of the array */
+	a[2] = 1024;
+	p = &n;
+
+	*(p + 5) = 98;
+
+	printf("a[2] = %d\n", a[2]);
 
 	return (0);
 }
