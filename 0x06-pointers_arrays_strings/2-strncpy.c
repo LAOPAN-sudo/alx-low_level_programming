@@ -5,6 +5,7 @@
  * @n: Maximum number of bytes to copy
  * Return: Pointer to the resulting string dest
  */
+
 char *_strncpy(char *dest, const char *src, int n)
 {
 	char *dest_ptr = dest;
