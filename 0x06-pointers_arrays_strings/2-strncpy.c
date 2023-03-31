@@ -20,5 +20,5 @@ char *_strncpy(char *dest, const char *src, int n)
 	*dest_ptr++ = '\0';
 	}
 
-	return dest;
+	return (dest);
 }
