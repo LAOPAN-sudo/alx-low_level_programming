@@ -2,21 +2,22 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define PASSWORD_LENGTH 10
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 int main(void)
 {
-  char password[PASSWORD_LENGTH + 1];
-  const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  srand(time(NULL));
-  
-  for (int i = 0; i < PASSWORD_LENGTH; i++) {
-    int index = rand() % (sizeof(charset) - 1);
-    password[i] = charset[index];
-  }
-  password[PASSWORD_LENGTH] = '\0';
+	int sum;
+	char c;
 
-  printf("Generated password: %s\n", password);
-
-  return 0;
+	srand(time(NULL));
+	while (sum <= 2645)
+	{
+		c = rand() % 128;
+		sum += c;
+		putchar(c);
+	}
+	putchar(2772 - sum);
+	return (0);
 }
