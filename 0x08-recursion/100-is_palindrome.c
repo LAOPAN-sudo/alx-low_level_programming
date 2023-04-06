@@ -1,49 +1,61 @@
 #include "main.h"
 
 /**
- * is_palindrome - checks if a string is a palindrome
- * @s: the string to check
+ * find_strlen - Returns the length of a string.
+ * @s: The string to be measured.
  *
- * Return: 1 if the string is a palindrome, 0 otherwise
+ * Return: The length of the string.
+ *
+ * Author: Silas Mugambi
+ */
+int find_strlen(char *s)
+{
+	int len = 0;
+
+	if (*(s + len))
+	{
+		len++;
+		len += find_strlen(s + len);
+	}
+
+	return (len);
+}
+
+/**
+ * check_palindrome - Checks if a string is a palindrome.
+ * @s: The string to be checked.
+ * @len: The length of s.
+ * @index: The index of the string to be checked.
+ *
+ * Return: If the string is a palindrome - 1.
+ * If the string is not a palindrome - 0.
+ */
+int check_palindrome(char *s, int len, int index)
+{
+	if (s[index] == s[len / 2])
+		return (1);
+
+	if (s[index] == s[len - index - 1])
+		return (check_palindrome(s, len, index + 1));
+	return (0);
+}
+
+/**
+ * is_palindrome - Checks if a string is a palindrome.
+ * @s: The string to be checked.
+ *
+ * Return: If the string is a palindrome - 1.
+ * If the string is not a palindrome - 0.
+ *
+ * Author: Silas Mugambi
  */
 int is_palindrome(char *s)
 {
-	int len = _strlen_recursion(s);
+	int index = 0;
+	int len = find_strlen(s);
 
-	if (len <= 1)
+	if (!(*s))
 		return (1);
-	else
-		return (check_palindrome(s, 0, len - 1));
-}
 
-/**
- * check_palindrome - helper function to check if a substring is a palindrome
- * @s: the string to check
- * @start: the index of the first character to check
- * @end: the index of the last character to check
- *
- * Return: 1 if the substring is a palindrome, 0 otherwise
- */
-int check_palindrome(char *s, int start, int end)
-{
-	if (start >= end)
-		return (1);
-	else if (s[start] != s[end])
-		return (0);
-	else
-		return (check_palindrome(s, start + 1, end - 1));
-}
-
-/**
- * _strlen_recursion - returns the length of a string
- * @s: the string to check
- *
- * Return: the length of the string
- */
-int _strlen_recursion(char *s)
-{
-	if (*s == '\0')
-		return (0);
-	else
-		return (1 + _strlen_recursion(s + 1));
+	return (check_palindrome(s, len, index));
 }
