@@ -7,9 +7,6 @@
  * @str: The string to be measured.
  *
  * Return: The length.
- *
- * Author: Silas Mugambi
- * Date: 2023-03-08
  */
 int strlen_no_wilds(char *str)
 {
