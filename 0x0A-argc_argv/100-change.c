@@ -3,33 +3,39 @@
 #include "main.h"
 
 /**
- * main - prints the minimum number of coins to make change
- * for an amount of money
- * @argc: argument count
- * @argv: argument vector
+ * main - Entry point for the program that calculates the minimum number of
+ * coins required to make change for an amount of money.
  *
- * Return: 0 on success, 1 on error
+ * @argc: The number of command line arguments.
+ * @argv: An array containing the command line arguments.
+ *
+ * Return: 0 if the program completes successfully, otherwise 1.
  */
 int main(int argc, char *argv[])
 {
-	int cents, coins = 0, coin_types[] = {25, 10, 5, 2, 1};
+	int num, j, result;
+	int coins[] = {25, 10, 5, 2, 1};
 
 	if (argc != 2)
 	{
 		printf("Error\n");
 		return (1);
 	}
-	cents = atoi(argv[1]);
-	if (cents < 0)
+	num = atoi(argv[1]);
+	result = 0;
+	if (num < 0)
 	{
 		printf("0\n");
 		return (0);
 	}
-	for (int i = 0; i < 5; i++)
+	for (j = 0; j < 5 && num >= 0; j++)
 	{
-		coins += cents / coin_types[i];
-		cents %= coin_types[i];
+		while (num >= coins[j])
+		{
+			result++;
+			num -= coins[j];
+		}
 	}
-	printf("%d\n", coins);
+	printf("%d\n", result);
 	return (0);
 }
