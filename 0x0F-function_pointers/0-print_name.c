@@ -1,3 +1,5 @@
+#include "main.h"
+
 /**
  * print_name - Prints a name
  * @name: Pointer to the name to be printed
