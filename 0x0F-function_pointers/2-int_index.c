@@ -1,6 +1,4 @@
 #include "function_pointers.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
  * int_index - a function that searches for an integer.
@@ -12,15 +10,25 @@
  * Return: index of the first int element || -1
  */
 
+/*
+ * Author: Silas Mugambi
+ * Description: This file defines the function int_index, which searches for an
+ *        integer in an array of integers using
+ *              a comparison function passed as an argument.
+ */
+
 int int_index(int *array, int size, int (*cmp)(int))
 {
-	int i;
+	int index;
 
-	if (size > 0 && array != NULL && cmp != NULL)
+	if (array == NULL || cmp == NULL)
+		return (-1);
+
+	for (index = 0; index < size; index++)
 	{
-		for (i = 0; i < size; i++)
-			if (cmp(array[i]) != 0)
-				return (i);
+		if (cmp(array[index]) != 0)
+			return (index);
 	}
+
 	return (-1);
 }
