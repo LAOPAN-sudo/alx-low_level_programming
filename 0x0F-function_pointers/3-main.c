@@ -1,20 +1,21 @@
-#include "3-calc.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include "3-calc.h"
 
 /**
- * main - Entry point for the calculator program.
- * @argc: The number of arguments supplied to the program.
- * @argv: An array of pointers to the arguments.
+ * main - entry point
  *
- * Return: Always 0.
+ * @argc: numbe of arguments pased
+ * @argv: array of argument pased
+ *
+ * Return: 0 if success
  */
+
 int main(int __attribute__((__unused__)) argc, char *argv[])
 {
 	int num1, num2;
 	char *op;
 
-  /* Check that the correct number of arguments is provided */
 	if (argc != 4)
 	{
 		printf("Error\n");
@@ -25,14 +26,12 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	op = argv[2];
 	num2 = atoi(argv[3]);
 
-  /* Check that the operator is valid */
 	if (get_op_func(op) == NULL || op[1] != '\0')
 	{
 		printf("Error\n");
 		exit(99);
 	}
 
-  /* Check for division or modulo by zero */
 	if ((*op == '/' && num2 == 0) ||
 	    (*op == '%' && num2 == 0))
 	{
@@ -40,7 +39,6 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 		exit(100);
 	}
 
-  /* Perform the calculation and print the result */
 	printf("%d\n", get_op_func(op)(num1, num2));
 
 	return (0);
