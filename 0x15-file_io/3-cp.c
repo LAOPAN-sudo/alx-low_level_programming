@@ -9,38 +9,38 @@
  */
 int main(int ac, char **av)
 {
-	int from;
-	int to;
+	int fd_from;
+	int fd_to;
 	char buffer[1024];
-	ssize_t k, l;
+	ssize_t i, j;
 
 	if (ac != 3)
 		dprintf(2, "Usage: cp file_from file_to\n"), exit(97);
 
-	from = open(av[1], O_RDONLY);
-	to = open(av[2], O_CREAT | O_WRONLY | O_APPEND | O_TRUNC, 0664);
-	if (from == -1)
+	fd_from = open(av[1], O_RDONLY);
+	fd_to = open(av[2], O_CREAT | O_WRONLY | O_APPEND | O_TRUNC, 0664);
+	if (fd_from == -1)
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]), exit(98);
-	if (to == -1)
+	if (fd_to == -1)
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]), exit(99);
 
 	do {
-		k = read(fd_from, buffer, 1024);
-		if (k == -1)
+		i = read(fd_from, buffer, 1024);
+		if (i == -1)
 			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]), exit(98);
-		l = write(fd_to, buffer, i);
-		if (l == -1 || l != i)
+		j = write(fd_to, buffer, i);
+		if (j == -1 || j != i)
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]), exit(99);
-	} while (k);
+	} while (i);
 
 
-	k = close(from), l = close(to);
-	if (k || l)
+	i = close(fd_from), j = close(fd_to);
+	if (i || j)
 	{
-		if (k)
-			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", from);
-		if (l)
-			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", to);
+		if (i)
+			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from);
+		if (j)
+			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_to);
 		exit(100);
 	}
 	return (0);
